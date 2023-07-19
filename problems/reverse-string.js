@@ -1,7 +1,7 @@
 module.exports = function reverseString(string) {
   // Your code here
   if (typeof string !== 'string') {
-    throw new Error(
+    throw new TypeError(
       'This function needs a string. But a different type of data provided.'
     );
   }
