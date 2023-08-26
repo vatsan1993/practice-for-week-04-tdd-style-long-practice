@@ -75,7 +75,7 @@ describe('Testing Scalene Class', () => {
   it('validate - sets a new property based on if its a scalene', () => {
     scalene.validate();
     scalene2.validate();
-
+    expect(scalene).to.have.own.property('validate');
     expect(scalene.isValidScalene).to.be.true;
     expect(scalene2.isValidScalene).to.be.false;
   });
