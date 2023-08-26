@@ -30,4 +30,24 @@ class Triangle {
   }
 }
 
-module.exports = Triangle;
+class Scalene extends Triangle {
+  constructor(side1, side2, side3) {
+    super(side1, side2, side3);
+    this.isValidTriangle = super.hasValidSideLengths();
+  }
+  isScalene() {
+    return (
+      this.isValidTriangle &&
+      this.side1 != this.side2 &&
+      this.side2 != this.side3 &&
+      this.side3 != this.side1
+    );
+  }
+  validate() {
+    this.isValidScalene = this.isScalene();
+  }
+}
+module.exports = {
+  Triangle,
+  Scalene,
+};

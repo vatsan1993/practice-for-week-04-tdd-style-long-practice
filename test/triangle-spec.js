@@ -1,6 +1,6 @@
 // Your code here
 const expect = require('chai').expect;
-const Triangle = require('../problems/triangle.js');
+const { Triangle, Scalene } = require('../problems/triangle.js');
 
 describe('Testing Triangle class', () => {
   let triangle;
@@ -43,5 +43,40 @@ describe('Testing Triangle class', () => {
 
     expect(validTriangles.length).to.be.equal(1);
     expect(validTriangles).to.include(triangle);
+  });
+});
+
+describe('Testing Scalene Class', () => {
+  let scalene;
+  let side1, side2, side3;
+  let scalene2;
+  before(() => {
+    side1 = 11;
+    side2 = 12;
+    side3 = 13;
+    scalene = new Scalene(side1, side2, side3);
+    scalene2 = new Scalene(10, 10, 10);
+  });
+  it('Scalene - should set the properties correctly', () => {
+    expect(scalene).to.have.own.property('side1');
+    expect(scalene).to.have.own.property('side2');
+    expect(scalene).to.have.own.property('side3');
+    expect(scalene).to.have.own.property('isValidTriangle');
+    expect(scalene.side1).to.be.equal(side1);
+    expect(scalene.side2).to.be.equal(side2);
+    expect(scalene.side3).to.be.equal(side3);
+    expect(scalene.isValidTriangle).to.be.true;
+  });
+  it('isScalene - should check of the triangle is scalene or not', () => {
+    expect(scalene.isScalene()).to.be.true;
+    expect(scalene2.isScalene()).to.be.false;
+  });
+
+  it('validate - sets a new property based on if its a scalene', () => {
+    scalene.validate();
+    scalene2.validate();
+
+    expect(scalene.isValidScalene).to.be.true;
+    expect(scalene2.isValidScalene).to.be.false;
   });
 });
