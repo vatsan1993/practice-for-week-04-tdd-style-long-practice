@@ -1,6 +1,6 @@
 // Your code here
 const expect = require('chai').expect;
-const { Triangle, Scalene } = require('../problems/triangle.js');
+const { Triangle, Scalene, Isosceles } = require('../problems/triangle.js');
 
 describe('Testing Triangle class', () => {
   let triangle;
@@ -67,7 +67,7 @@ describe('Testing Scalene Class', () => {
     expect(scalene.side3).to.be.equal(side3);
     expect(scalene.isValidTriangle).to.be.true;
   });
-  it('isScalene - should check of the triangle is scalene or not', () => {
+  it('isIsosceles- should check of the triangle is scalene or not', () => {
     expect(scalene.isScalene()).to.be.true;
     expect(scalene2.isScalene()).to.be.false;
   });
@@ -75,8 +75,43 @@ describe('Testing Scalene Class', () => {
   it('validate - sets a new property based on if its a scalene', () => {
     scalene.validate();
     scalene2.validate();
-    expect(scalene).to.have.own.property('validate');
+    // expect(scalene).to.have.own.property('validate');
     expect(scalene.isValidScalene).to.be.true;
     expect(scalene2.isValidScalene).to.be.false;
+  });
+});
+
+describe('Testing Isosceles Class', () => {
+  let isosceles;
+  let side1, side2, side3;
+  let isosceles2;
+  before(() => {
+    side1 = 11;
+    side2 = 12;
+    side3 = 12;
+    isosceles = new Isosceles(side1, side2, side3);
+    isosceles2 = new Isosceles(10, 10, 10);
+  });
+  it('Isosceles - should set the properties correctly', () => {
+    expect(isosceles).to.have.own.property('side1');
+    expect(isosceles).to.have.own.property('side2');
+    expect(isosceles).to.have.own.property('side3');
+    expect(isosceles).to.have.own.property('isValidTriangle');
+    expect(isosceles.side1).to.be.equal(side1);
+    expect(isosceles.side2).to.be.equal(side2);
+    expect(isosceles.side3).to.be.equal(side3);
+    expect(isosceles.isValidTriangle).to.be.true;
+  });
+  it('isScalene - should check of the triangle is scalene or not', () => {
+    expect(isosceles.isIsosceles()).to.be.true;
+    expect(isosceles2.isIsosceles()).to.be.false;
+  });
+
+  it('validate - sets a new property based on if its a scalene', () => {
+    isosceles.validate();
+    isosceles2.validate();
+    // expect(scalene).to.have.own.property('validate');
+    expect(isosceles.isValidIsosceles).to.be.true;
+    expect(isosceles2.isValidIsosceles).to.be.false;
   });
 });

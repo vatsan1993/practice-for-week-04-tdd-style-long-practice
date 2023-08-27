@@ -1,3 +1,5 @@
+const { expect } = require('chai');
+
 // Your code here
 class Triangle {
   constructor(side1, side2, side3) {
@@ -43,11 +45,31 @@ class Scalene extends Triangle {
       this.side3 != this.side1
     );
   }
-  //   validate() {
-  //     this.isValidScalene = this.isScalene();
-  //   }
+  validate() {
+    this.isValidScalene = this.isScalene();
+  }
 }
+
+class Isosceles extends Triangle {
+  constructor(side1, side2, side3) {
+    super(side1, side2, side3);
+    this.isValidTriangle = super.hasValidSideLengths();
+  }
+  isIsosceles() {
+    return (
+      this.isValidTriangle &&
+      ((this.side1 === this.side2 && this.side2 !== this.side3) ||
+        (this.side2 === this.side3 && this.side1 !== this.side2) ||
+        (this.side2 === this.side3 && this.side2 !== this.side1))
+    );
+  }
+  validate() {
+    this.isValidIsosceles = this.isIsosceles();
+  }
+}
+
 module.exports = {
   Triangle,
   Scalene,
+  Isosceles,
 };
